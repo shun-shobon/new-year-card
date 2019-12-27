@@ -2,13 +2,18 @@
   <head>
     <!-- A-Frameライブラリ -->
     <script src="https://aframe.io/releases/1.0.1/aframe.min.js"></script>
+    <!-- glTF形式のファイルのアニメーションを行う拡張ライブラリ -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
     <!-- AR.jsライブラリ -->
     <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.4/aframe/build/aframe-ar.js"></script>
   </head>
   <body>
-    <a-scene embedded arjs>
+    <a-scene embedded arjs="debugUIEnabled: false" renderer="gammaOutput: true" vr-mode-ui="enabled: false">
+      <a-assets>
+        <a-asset-item id="obj" src="newyear.glb"></a-asset-item>
+      </a-assets>
       <a-marker type="pattern" url="new-year-card-qr.patt">
-        <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+        <a-entity gltf-model="#obj" scale="0.1 0.1 0.1" animation-mixer></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
